@@ -21,11 +21,15 @@
 
 > Rimspace/ plugins/
 >> MyPlugin/
+>>
+>>>
 >>> main.js
 >>>
 >>> manifest.json
 >>>
 >> MyPlugin2/
+>>
+>>>
 >>> main.js
 >>>
 >>> manifest.json
