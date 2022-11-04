@@ -1,6 +1,6 @@
 # Rimspace Plugin System
 
-# Version 0.1.0.0
+# Version 0.1.0.1
 ---
 
 ## Help document of Rimspace plug-in system
@@ -80,6 +80,8 @@
 > (getter) build: null | string;
 > 
 > (method) exec: (cmd: string, cb?: (json: object, obj?: object) => void, obj?: object ) => void;
+> 
+> (method) wexec: (cmdOrigin: string) => void;
 > 
 > (method) execute: (player: string, cmd: string, pos?: [number, number, number], cb?: (json: object) => void) => void;
 > 
@@ -165,12 +167,31 @@ logger.info(uuidv4());// 3ae71209-de06-4da7-a8ef-5c2fce7f11d5
 logger.info(random(1, 3)); // 1, 2, 3
 ```
 
+> ### parseCmdPos
+> 
+> ### *Separating coordinate data*
+
+```js
+console.log(parseCmdPos("setblock ~~~ air 0")); // {pos: [0, 0, 0], data: "air 0"}
+console.log(parseCmdPos("setblock 100 255 100 dirt 1")); // {pos: ["100", "255", "100"], data: "dirt 1"}
+console.log(parseCmdPos("setblock ~-0.1~ ~7 air 0")); // {pos: [-0.1, 0, 7], data: "air 0"}
+console.log(parseCmdPos("fill 0 0 0 ~-1~-1~0.5air 0 destroy")); // {pos: ["0", "0", "0", -1, -1, -0.5], data: "air 0 destroy"}
+```
+
 > ### lang
 > 
 > *Call language file*
 
 ```js
-logger.info(lang("lang header", "version"));// 0.1.0.0
+logger.info(lang("lang header", "version"));// 0.1.0.1
+```
+
+> ### config
+> 
+> *Configuration Option (readonly)*
+
+```js
+console.log(config())
 ```
 
 > ### exit
@@ -270,6 +291,36 @@ this.events.onPlayerMessage = (player, parsed) => {
 }
 ```
 
+&#160;
+
+&#160;
+
+&#160;
+
+&#160;
+
+&#160;
+
+&#160;
+
+&#160;
+
+&#160;
+
+&#160;
+
+&#160;
+
+&#160;
+
+&#160;
+
+&#160;
+
+&#160;
+
+&#160;
+
 ---
 # *Variable Reference*
 ```js
@@ -340,7 +391,7 @@ const rimspace: {
         env: NodeJS.ProcessEnv;
         connectionTimes: number;
     };
-    config: object;
+    config(): object;
     version: string;
     RSON: {
         parse: (text: string) => object;
@@ -365,5 +416,11 @@ const plugin: object = this;
 const func: {
     drawProgress(len: number, percentage: number, color?: string): string;
     random(arg0: number, arg1: number): number;
+    parseCmdPos(cmdOrigin: string): {
+        pos: any[],
+        data: string
+    };
+    readFileSync(path: string, encoding ?: string): Buffer;
 } = api.func;
+const fs: object = api.initFs();
 ```
