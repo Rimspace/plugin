@@ -1,6 +1,8 @@
 # Rimspace Plugin System
 
 # Version 0.1.0.1
+
+## *Our group chat: 424960844*
 ---
 
 ## Help document of Rimspace plug-in system
