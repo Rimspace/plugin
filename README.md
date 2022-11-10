@@ -1,6 +1,6 @@
 # Rimspace Plugin System
 
-# Version 0.1.0.1
+# Version 0.1.0.2
 
 ## *Our group chat: 424960844*
 ---
@@ -202,6 +202,14 @@ console.log(config())
 
 ```js
 exit(0);
+```
+
+> ### require
+> 
+> Require Modules
+
+```js
+var fs = api.require("fs");
 ```
 
 > ### logger
